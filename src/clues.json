@@ -1,0 +1,168 @@
+{
+  "2025-04-25": {
+    "title": "The Premier Club",
+    "clues": [
+      {
+        "id": 0,
+        "question": "An american propaganda character's store similar to Costco.",
+        "answer": "Uncle Sam's Club",
+        "solved": false
+      },
+      {
+        "id": 1,
+        "question": "A popular hip hop artist moves into a section of the White House",
+        "answer": "Kanye West Wing",
+        "solved": false
+      },
+      {
+        "id": 2,
+        "question": "Pixar character Joy moves to Alaska to hit the slopes with Zach Galifianakis in this crossover film",
+        "answer": "Inside Out Cold",
+        "solved": false
+      },
+      {
+        "id": 3,
+        "question": "An american rock band since '91 named after their front-man covers a song by Paul Mccartney & The Wings featuring an unexpected verse from a hip-hop superduo.",
+        "answer": "Dave Matthews Band on the Run the Jewels",
+        "solved": false
+      }
+    ],
+    "extraWords": [
+      "bang", "2", "snoop", "kendrick", "nas", "lil", "cube", "frost", 
+      "icicle", "freeze", "frigid", "chill", "bar", "pub", "lounge", "annex", 
+      "balcony", "aunt", "cousin", "music", "black", "dash", "jog", 
+      "sprint", "gems", "ruby", "within", "outside", "upon", "arm"
+    ]
+  },
+  "2025-04-26": {
+    "title": "Grab Bag of Holding",
+    "clues": [
+      {
+        "id": 0,
+        "question": "Rihanna's EDM hit searches for singles in paradise on reality TV.",
+        "answer": "We Found Love Island",
+        "solved": false
+      },
+      {
+        "id": 1,
+        "question": "Mouselike boy in an E.B. White story traveling through the heavens as Ursa Minor.",
+        "answer": "Stuart Little Dipper",
+        "solved": false
+      },
+      {
+        "id": 2,
+        "question": "The famed Bourbon street area of New Orleans serves a classic fast food burger.",
+        "answer": "French Quarter Pounder",
+        "solved": false
+      },
+      {
+        "id": 3,
+        "question": "A dyed object hunted for on resurrection Sunday, with fried Chinese appetizers becomes an Alabama football rally cry.",
+        "answer": "Easter Egg Roll Tide",
+        "solved": false
+      }
+    ],
+    "extraWords": [
+      "work", "diamonds", "hot", "24", "whopper", "bacon", "double", "elf", "Chris", "baker", "a",
+      "rah", "jesus", "crab", "stars", "Jacob", "fun", "yeah"
+    ]
+  },
+  "2025-04-27": {
+    "title": "Grab Bag of Tricks",
+    "clues": [
+      {
+        "id": 0,
+        "question": "A 1946 film following George Bailey's Christmas Eve takes a turn when he grabs this item to survive a sinking ship.",
+        "answer": "A Beautiful Life Jacket",
+        "solved": false
+      },
+      {
+        "id": 1,
+        "question": "Ice cream parlor favorite faces an uncertain call from boxing judges.",
+        "answer": "Banana Split Decision",
+        "solved": false
+      },
+      {
+        "id": 2,
+        "question": "A viral simple game with one button becomes an item for some feathered flyers to take a drink or cool off.",
+        "answer": "Flappy Bird Bath",
+        "solved": false
+      },
+      {
+        "id": 3,
+        "question": "A non-verbal response to someone saying something stupid ends up hurting so bad you get pain in your cranium and then in your chest.",
+        "answer": "Shaking My Head Ache-y Breaky Heart",
+        "solved": false
+      } 
+    ],
+    "extraWords": [
+      "citizen", "santa", "the", "cone", "chocolate", "vanilla", "minecraft", "pong", "blood", "water", "shower",
+      "eagle", "whipped", "cream", "any", "from", "but", "torso"
+    ]
+  },
+  "2025-04-28": {
+    "title": "The Windy City Lights",
+    "clues": [
+      {
+        "id": 0,
+        "question": "An Adele single about a Chicago staple.",
+        "answer": "Rolling in the Deep Dish",
+        "solved": false
+      },
+      {
+        "id": 1,
+        "question": "A Snoop Dogg single about a Chicago-styled food.",
+        "answer": "Drop It Like It's Hot Dog",
+        "solved": false
+      },
+      {
+        "id": 2,
+        "question": "A windy city team goes marching to a Rage against the Machine song.",
+        "answer": "Chicago Bulls on Parade",
+        "solved": false
+      },
+      {
+        "id": 3,
+        "question": "An '80s classic filmed in Chicago features a car riding through dirt listening to a single by the Talking Heads.",
+        "answer": "Ferris Bueller's Day Off Road to Nowhere",
+        "solved": false
+      } 
+    ],
+    "extraWords": [
+      "chicago", "sears", "sausage", "cubs", "bears", "madison", "new", "york", "single", "3", "more", "better",
+      "shake", "weed", "smoke", "blues", "brothers"
+    ]
+  },
+  "2025-04-29": {
+    "title": "Granny Shot in the Dark",
+    "clues": [
+      {
+        "id": 0,
+        "question": "An Arrested Development child becomes a hoops legend.",
+        "answer": "George Michael Jordan",
+        "solved": false
+      },
+      {
+        "id": 1,
+        "question": "A Boston Celtics superstart succumbs to the H5N1 virus.",
+        "answer": "Larry Bird Flu",
+        "solved": false
+      },
+      {
+        "id": 2,
+        "question": "A potential 3 point basketball play sung about by Harry Styles and others.",
+        "answer": "And One Direction",
+        "solved": false
+      },
+      {
+        "id": 3,
+        "question": "Nicole Kidman and Sandra Bullock use their witchcraft to play ball with a famed HIV-postive basketball player who works for a pharmaceutical industry company.",
+        "answer": "Practical Magic Johnson & Johnson",
+        "solved": false
+      }
+    ],
+    "extraWords": [
+      "aids", "jr", "sr", "bluth", "blue", "russell", "steph", "curry", "kobe", "dark", "black", "abbott", "three", "play", "bounce", "with", "a", "the", "boys"
+    ]
+  }
+} 
