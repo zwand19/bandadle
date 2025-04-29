@@ -37,9 +37,11 @@ export const getGameDateForToday = (): string => {
   
   // Try to use today's date, or fall back to the latest available date
   const todayFormatted = getFormattedDate(today);
-  return availableDates.includes(todayFormatted) 
+  const result = availableDates.includes(todayFormatted) 
     ? todayFormatted 
     : availableDates[availableDates.length - 1];
+  
+  return result;
 };
 
 // Get clues for a specific date or today

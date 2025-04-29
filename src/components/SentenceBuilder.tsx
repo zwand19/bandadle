@@ -8,6 +8,7 @@ interface SentenceBuilderProps {
   showHidden?: boolean;
   availableWords?: string[];
   onWordClick: (word: string) => void;
+  shouldFocus?: boolean;
 }
 
 const SentenceBuilder: React.FC<SentenceBuilderProps> = ({ 
@@ -16,7 +17,8 @@ const SentenceBuilder: React.FC<SentenceBuilderProps> = ({
   onClearSentence,
   showHidden = false,
   availableWords = [],
-  onWordClick
+  onWordClick,
+  shouldFocus = false
 }) => {
   const [inputValue, setInputValue] = useState<string>('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -38,17 +40,17 @@ const SentenceBuilder: React.FC<SentenceBuilderProps> = ({
     }
 
     const filtered = availableWords.filter(word => 
-      word.toLowerCase().includes(inputValue.toLowerCase())
+      word.toLowerCase().startsWith(inputValue.toLowerCase())
     );
     setSuggestions(filtered);
   }, [inputValue, availableWords]);
 
-  // Focus input on mount
+  // Focus input when shouldFocus changes to true
   useEffect(() => {
-    if (inputRef.current) {
+    if (shouldFocus && inputRef.current && !showHidden) {
       inputRef.current.focus();
     }
-  }, []);
+  }, [shouldFocus, showHidden]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     // Handle backspace to remove the last word when input is empty

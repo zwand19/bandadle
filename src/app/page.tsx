@@ -31,6 +31,7 @@ export default function Home() {
   const [showResultModal, setShowResultModal] = useState(false);
   const [showIntroModal, setShowIntroModal] = useState(true);
   const [timerPaused, setTimerPaused] = useState(true);
+  const [shouldFocusInput, setShouldFocusInput] = useState(false);
   
   // Initialize game
   useEffect(() => {
@@ -126,6 +127,8 @@ export default function Home() {
       setTimerPaused(true);
     } else if (!gameState.gameCompleted) {
       setTimerPaused(false);
+      // Trigger input focus when intro modal is closed
+      setShouldFocusInput(true);
     }
   }, [showIntroModal, gameState.gameCompleted]);
   
@@ -279,6 +282,7 @@ export default function Home() {
   const handleStartGame = () => {
     setShowIntroModal(false);
     localStorage.setItem('bandadleIntroSeen', new Date().toDateString());
+    setShouldFocusInput(true);
     
     // Start the timer after closing the intro modal
     if (gameState.clues.length > 0 && !gameState.startTime && !gameState.gameCompleted) {
@@ -436,6 +440,17 @@ export default function Home() {
     }
   }, [gameState.startTime, gameState.gameCompleted]);
   
+  // Reset focus trigger after it's been used
+  useEffect(() => {
+    if (shouldFocusInput) {
+      const timer = setTimeout(() => {
+        setShouldFocusInput(false);
+      }, 500);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [shouldFocusInput]);
+  
   return (
     <>
       <div style={{ maxWidth: '1024px', margin: '0 auto' }}>
@@ -526,6 +541,7 @@ export default function Home() {
           showHidden={showIntroModal}
           availableWords={gameState.availableWords}
           onWordClick={handleWordClick}
+          shouldFocus={shouldFocusInput}
         />
         
         <div className="flex-1 overflow-auto">
