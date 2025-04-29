@@ -6,9 +6,11 @@ import Link from 'next/link';
 
 interface HeaderMenuProps {
   onShowIntro: () => void;
+  onGiveUp?: () => void;
+  gameStarted?: boolean;
 }
 
-export default function HeaderMenu({ onShowIntro }: HeaderMenuProps) {
+export default function HeaderMenu({ onShowIntro, onGiveUp, gameStarted = false }: HeaderMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -79,6 +81,18 @@ export default function HeaderMenu({ onShowIntro }: HeaderMenuProps) {
               >
                 Show Instructions
               </button>
+              {gameStarted && onGiveUp && (
+                <button
+                  onClick={() => {
+                    onGiveUp();
+                    setIsOpen(false);
+                  }}
+                  className="dropdown-menu-item"
+                  style={{ color: '#ef4444' }}
+                >
+                  Give Up
+                </button>
+              )}
               <Link
                 href="/submit-puzzle"
                 onClick={() => setIsOpen(false)}

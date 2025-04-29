@@ -11,6 +11,7 @@ interface ResultModalProps {
   onClose: () => void;
   forfeit: boolean;
   clues: Clue[];
+  gameDate?: string;
 }
 
 const ResultModal: React.FC<ResultModalProps> = ({
@@ -19,7 +20,8 @@ const ResultModal: React.FC<ResultModalProps> = ({
   endTime,
   onClose,
   forfeit = false,
-  clues = []
+  clues = [],
+  gameDate
 }) => {
   const [copied, setCopied] = useState(false);
 
@@ -39,7 +41,8 @@ const ResultModal: React.FC<ResultModalProps> = ({
     totalSolved, 
     failedCount, 
     hintedCount,
-    clues
+    clues,
+    gameDate
   );
 
   const copyResults = () => {

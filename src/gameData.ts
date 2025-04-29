@@ -9,8 +9,31 @@ export const getFormattedDate = (date: Date = new Date()): string => {
 // For demo purposes, use the mock date based on actual day
 // This simulates having daily puzzles while using our limited demo data
 export const getGameDateForToday = (): string => {
-  const today = new Date();
   const availableDates = Object.keys(cluesData);
+  
+  // Check for URL parameter date override - client-side only
+  if (typeof window !== 'undefined') {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const dateParam = urlParams.get('date');
+      
+      if (dateParam) {
+        // Validate date format (YYYY-MM-DD)
+        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+        if (dateRegex.test(dateParam)) {
+          // Check if the requested date exists in our data
+          if (availableDates.includes(dateParam)) {
+            return dateParam;
+          }
+        }
+      }
+    } catch (e) {
+      // If URL parsing fails, continue with default behavior
+      console.error("Error parsing URL parameters:", e);
+    }
+  }
+  
+  const today = new Date();
   
   // Try to use today's date, or fall back to the latest available date
   const todayFormatted = getFormattedDate(today);
@@ -92,7 +115,8 @@ export const getResultEmojis = (
   solvedClues: number = 4, 
   failedClues: number = 0,
   hintedClues: number = 0,
-  clues: Clue[] = []
+  clues: Clue[] = [],
+  gameDate?: string
 ): string => {
   // Convert to seconds
   const elapsedTime = Math.floor(elapsedTimeMs / 1000);
@@ -102,9 +126,9 @@ export const getResultEmojis = (
   
   if (forfeit) {
     timeEmoji = '❌';
-  } else if (elapsedTime > 300) { // > 5 minutes
-    timeEmoji = '⏱️';
   } else if (elapsedTime > 180) { // > 3 minutes
+    timeEmoji = '⏱️';
+  } else if (elapsedTime > 120) { // > 2 minutes
     timeEmoji = '⚡';
   }
   
@@ -142,5 +166,20 @@ export const getResultEmojis = (
     completionEmojis = greenSquares + yellowSquares + redSquares;
   }
   
-  return `Bandadle ${new Date().toLocaleDateString('en-US', { month: 'numeric', day: 'numeric' })}\n${actualSolved}/4 ${timeEmoji}\nTime: ${formattedTime}\n\n${completionEmojis}\n\nbandadle.com`;
+  // Format the display date - use gameDate if provided, otherwise use today
+  let displayDate = new Date().toLocaleDateString('en-US', { month: 'numeric', day: 'numeric' });
+  
+  // If gameDate is provided (format: YYYY-MM-DD), parse and format it
+  if (gameDate) {
+    try {
+      const [year, month, day] = gameDate.split('-').map(n => parseInt(n, 10));
+      // Month is 0-indexed in JavaScript Date
+      const date = new Date(year, month - 1, day);
+      displayDate = date.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric' });
+    } catch (e) {
+      // Fallback to today's date if parsing fails
+    }
+  }
+  
+  return `Bandadle ${displayDate}\n${actualSolved}/4 ${timeEmoji}\nTime: ${formattedTime}\n\n${completionEmojis}\n\nbandadle.com`;
 }; 

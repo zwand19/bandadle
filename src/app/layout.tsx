@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   description: 'A daily game of before and after puzzles. Solve all the clues before time runs out!',
   icons: {
     icon: '/favicon.ico'
+  },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1
   }
 }
 

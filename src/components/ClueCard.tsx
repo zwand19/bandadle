@@ -105,7 +105,8 @@ const ClueCard: React.FC<ClueCardProps> = ({
       <p style={{ 
         margin: '0',
         fontSize: '0.875rem',
-        lineHeight: '1.25'
+        lineHeight: '1.25',
+        color: '#333333'
       }}>
         {showHidden ? createRedactedText(clue.question) : clue.question}
       </p>

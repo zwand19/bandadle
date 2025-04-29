@@ -58,6 +58,7 @@ const WordGrid: React.FC<WordGridProps> = ({
               cursor: 'pointer',
               textAlign: 'center',
               fontWeight: isHinted ? '500' : 'normal',
+              color: '#333333',
               boxShadow: isHinted 
                 ? `0 1px 3px 0 ${hintColor}33` 
                 : '0 1px 2px 0 rgba(0, 0, 0, 0.05)'

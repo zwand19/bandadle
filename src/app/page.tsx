@@ -34,6 +34,9 @@ export default function Home() {
   
   // Initialize game
   useEffect(() => {
+    // Only run client-side
+    if (typeof window === 'undefined') return;
+    
     const savedGameState = localStorage.getItem('bandadleGameStatev2');
     const today = new Date().toDateString();
     const hasSeenIntro = localStorage.getItem('bandadleIntroSeen');
@@ -43,7 +46,15 @@ export default function Home() {
       setShowIntroModal(false);
     }
     
-    if (savedGameState) {
+    // Check if URL has a date parameter - always initialize new game when date parameter is present
+    const urlParams = new URLSearchParams(window.location.search);
+    const isOverriddenDate = urlParams.has('date');
+    
+    if (isOverriddenDate) {
+      // When date is specified in URL, always load a fresh game
+      initializeNewGame();
+      setShowIntroModal(true);
+    } else if (savedGameState) {
       const parsedData = JSON.parse(savedGameState);
       
       // Convert hintedWords to Map, handling both object and array formats
@@ -67,7 +78,7 @@ export default function Home() {
         hintedWords: hintedWordsMap
       } as GameState;
       
-      // If it's a new day or a new game date, reset the game
+      // If it's a new day or new game date, reset the game
       if (parsedState.currentDate !== today || parsedState.gameDate !== todayGameDate) {
         initializeNewGame();
         setShowIntroModal(true);
@@ -392,140 +403,189 @@ export default function Home() {
     setTimerPaused(true);
   };
   
-  // Render HeaderMenu in the container
+  // Check if we're viewing a date other than today
+  const isViewingHistoricalPuzzle = () => {
+    if (typeof window === 'undefined') return false;
+    return new URLSearchParams(window.location.search).has('date');
+  };
+
+  // Return to today's puzzle
+  const returnToToday = () => {
+    if (typeof window !== 'undefined') {
+      // Using window.location.replace to force a full page reload and avoid hydration issues
+      window.location.replace('/');
+    }
+  };
+  
+  // Render HeaderMenu into the container on mount
   useEffect(() => {
     const headerMenuContainer = document.getElementById('headerMenuContainer');
-    
-    // Only attempt to render if the container exists
-    if (headerMenuContainer) {
+    if (headerMenuContainer && typeof window !== 'undefined') {
       try {
         const root = ReactDOM.createRoot(headerMenuContainer);
-        root.render(<HeaderMenu onShowIntro={handleShowIntro} />);
+        root.render(
+          <HeaderMenu 
+            onShowIntro={handleShowIntro}
+            onGiveUp={handleGiveUp}
+            gameStarted={!!gameState.startTime && !gameState.gameCompleted}
+          />
+        );
       } catch (error) {
         console.error('Error rendering header menu:', error);
       }
     }
-  }, []);
+  }, [gameState.startTime, gameState.gameCompleted]);
   
   return (
-    <div style={{ maxWidth: '1024px', margin: '0 auto' }}>
-      <GameTimer 
-        startTime={gameState.startTime} 
-        endTime={gameState.endTime}
-        isPaused={timerPaused}
-      />
-      
-      {gameState.title && !showIntroModal && (
-        <motion.h1
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          style={{
-            fontSize: '1.5rem',
-            fontWeight: '600',
-            textAlign: 'center',
-            margin: '0.5rem 0 1rem',
-            color: '#1f2937'
-          }}
-        >
-          {gameState.title}
-        </motion.h1>
-      )}
-      
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(2, 1fr)', 
-        rowGap: '1.25rem',
-        columnGap: '0.75rem',
-        marginBottom: '1.25rem' 
-      }}>
-        <AnimatePresence>
-          {gameState.clues.map(clue => (
-            <motion.div
-              key={clue.id}
-              initial={{ opacity: 0, y: 10, boxShadow: '0 0 0 rgba(0, 0, 0, 0)' }}
-              animate={{ 
-                opacity: 1, 
-                y: 0,
-                boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)' 
+    <>
+      <div style={{ maxWidth: '1024px', margin: '0 auto' }}>
+        <GameTimer 
+          startTime={gameState.startTime} 
+          endTime={gameState.endTime}
+          isPaused={timerPaused}
+        />
+        
+        {gameState.title && !showIntroModal && (
+          <motion.div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+            <motion.h1
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              style={{
+                fontSize: '1.5rem',
+                fontWeight: '600',
+                textAlign: 'center',
+                margin: '0.5rem 0 1rem',
+                color: 'rgb(31, 70, 57)'
               }}
-              transition={{ duration: 0.2, delay: clue.id * 0.05 }}
             >
-              <ClueCard 
-                clue={clue} 
-                showHidden={showIntroModal} 
-                forfeit={gameState.forfeit}
-                onHint={!gameState.gameCompleted ? handleHint : undefined}
-              />
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </div>
-      
-      <SentenceBuilder 
-        selectedWords={gameState.selectedWords}
-        onWordRemove={handleWordRemove}
-        onClearSentence={handleClearSentence}
-        showHidden={showIntroModal}
-        availableWords={gameState.availableWords}
-        onWordClick={handleWordClick}
-      />
-      
-      <div className="flex-1 overflow-auto">
-        <WordGrid 
-          words={gameState.availableWords} 
+              {gameState.title}
+            </motion.h1>
+            
+            {isViewingHistoricalPuzzle() && (
+              <div style={{ marginTop: '0.5rem' }}>
+                <motion.button
+                  onClick={returnToToday}
+                  initial={{ boxShadow: '0 0 0 rgba(0, 0, 0, 0)' }}
+                  whileHover={{ 
+                    scale: 1.05,
+                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  style={{ 
+                    backgroundColor: 'rgb(31, 70, 57)',
+                    color: 'white',
+                    padding: '0.35rem 1rem',
+                    borderRadius: '0.375rem',
+                    fontWeight: '500',
+                    fontSize: '0.75rem',
+                    cursor: 'pointer',
+                    border: 'none'
+                  }}
+                >
+                  Return to Today's Puzzle
+                </motion.button>
+              </div>
+            )}
+          </motion.div>
+        )}
+        
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(2, 1fr)', 
+          rowGap: '1.25rem',
+          columnGap: '0.75rem',
+          marginBottom: '1.25rem' 
+        }}>
+          <AnimatePresence>
+            {gameState.clues.map(clue => (
+              <motion.div
+                key={clue.id}
+                initial={{ opacity: 0, y: 10, boxShadow: '0 0 0 rgba(0, 0, 0, 0)' }}
+                animate={{ 
+                  opacity: 1, 
+                  y: 0,
+                  boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)' 
+                }}
+                transition={{ duration: 0.2, delay: clue.id * 0.05 }}
+              >
+                <ClueCard 
+                  clue={clue} 
+                  showHidden={showIntroModal} 
+                  forfeit={gameState.forfeit}
+                  onHint={!gameState.gameCompleted ? handleHint : undefined}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+        
+        <SentenceBuilder 
+          selectedWords={gameState.selectedWords}
+          onWordRemove={handleWordRemove}
+          onClearSentence={handleClearSentence}
+          showHidden={showIntroModal}
+          availableWords={gameState.availableWords}
           onWordClick={handleWordClick}
+        />
+        
+        <div className="flex-1 overflow-auto">
+          <WordGrid 
+            words={gameState.availableWords} 
+            onWordClick={handleWordClick}
+            startTime={gameState.startTime}
+            endTime={gameState.endTime}
+            showHidden={showIntroModal}
+            hintedWords={gameState.hintedWords}
+          />
+        </div>
+        
+        {gameState.startTime && !gameState.gameCompleted && (
+          <div style={{ 
+            marginTop: '2.5rem', 
+            marginBottom: '1.5rem',
+            display: 'flex', 
+            justifyContent: 'center' 
+          }}>
+            <motion.button
+              onClick={handleGiveUp}
+              initial={{ boxShadow: '0 0 0 rgba(0, 0, 0, 0)' }}
+              whileHover={{ 
+                scale: 1.05,
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+              }}
+              whileTap={{ scale: 0.95 }}
+              style={{ 
+                backgroundColor: '#ef4444',
+                color: 'white',
+                padding: '0.5rem 2rem',
+                borderRadius: '0.5rem',
+                fontWeight: '500',
+                fontSize: '0.875rem',
+                cursor: 'pointer',
+                border: 'none',
+                minWidth: '150px'
+              }}
+            >
+              Give Up
+            </motion.button>
+          </div>
+        )}
+        
+        <ResultModal 
+          isOpen={showResultModal}
           startTime={gameState.startTime}
           endTime={gameState.endTime}
-          showHidden={showIntroModal}
-          hintedWords={gameState.hintedWords}
+          onClose={closeResultModal}
+          forfeit={gameState.forfeit}
+          clues={gameState.clues}
+          gameDate={gameState.gameDate}
+        />
+        
+        <IntroModal 
+          isOpen={showIntroModal}
+          onStart={handleStartGame}
         />
       </div>
-      
-      {gameState.startTime && !gameState.gameCompleted && (
-        <div style={{ 
-          marginTop: '2.5rem', 
-          marginBottom: '1.5rem',
-          display: 'flex', 
-          justifyContent: 'center' 
-        }}>
-          <motion.button
-            onClick={handleGiveUp}
-            initial={{ boxShadow: '0 0 0 rgba(0, 0, 0, 0)' }}
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
-            }}
-            whileTap={{ scale: 0.95 }}
-            style={{ 
-              backgroundColor: '#ef4444',
-              color: 'white',
-              padding: '0.5rem 2rem',
-              borderRadius: '0.5rem',
-              fontWeight: '500',
-              fontSize: '0.875rem',
-              cursor: 'pointer',
-              border: 'none',
-              minWidth: '150px'
-            }}
-          >
-            Give Up
-          </motion.button>
-        </div>
-      )}
-      
-      <ResultModal 
-        isOpen={showResultModal}
-        startTime={gameState.startTime}
-        endTime={gameState.endTime}
-        onClose={closeResultModal}
-        forfeit={gameState.forfeit}
-        clues={gameState.clues}
-      />
-      
-      <IntroModal 
-        isOpen={showIntroModal}
-        onStart={handleStartGame}
-      />
-    </div>
+    </>
   );
 }
