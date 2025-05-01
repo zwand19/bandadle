@@ -164,5 +164,37 @@
     "extraWords": [
       "aids", "jr", "sr", "bluth", "blue", "russell", "steph", "curry", "kobe", "dark", "black", "abbott", "three", "play", "bounce", "with", "a", "the", "boys"
     ]
+  },
+  "2025-05-01": {
+    "title": "Marvel at the Sight Unseen",
+    "clues": [
+      {
+        "id": 0,
+        "question": "The first MCU film gets played for a club who won the premier league from 2020-2023 (nickname).",
+        "answer": "Iron Man City",
+        "solved": false
+      },
+      {
+        "id": 1,
+        "question": "Imposter Ned Schneebly plays a role alongside the MCU's T'Challa.",
+        "answer": "Jack Black Panther",
+        "solved": false
+      },
+      {
+        "id": 2,
+        "question": "A famous phrase reminding us that making mistakes is part of being mortal is spoken by a fiery Fantastic Four member who may have been denied a bank loan.",
+        "answer": "To Err is Human Torch",
+        "solved": false
+      },
+      {
+        "id": 3,
+        "question": "Groot and friends have increasingly genius ideas like a space-y meme. Unfortunately, they're so good it makes their head hurt like they just chugged a slushie.", 
+        "answer": "Guardians of the Galaxy Brain Freeze",
+        "solved": false
+      }
+    ],
+    "extraWords": [
+      "cream", "a", "we", "&", "boys", "space", "joker", "club", "football", "captain", "america", "wanda", "blue", "up", "faking", "company", "friends", "bad", "oops"
+    ]
   }
 } 
