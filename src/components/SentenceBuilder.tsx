@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Clue } from '@/types';
 
 interface SentenceBuilderProps {
   selectedWords: string[];
@@ -9,6 +10,8 @@ interface SentenceBuilderProps {
   availableWords?: string[];
   onWordClick: (word: string) => void;
   shouldFocus?: boolean;
+  clues?: Clue[];
+  checkForMatch?: (words: string[]) => void;
 }
 
 const SentenceBuilder: React.FC<SentenceBuilderProps> = ({ 
@@ -18,7 +21,9 @@ const SentenceBuilder: React.FC<SentenceBuilderProps> = ({
   showHidden = false,
   availableWords = [],
   onWordClick,
-  shouldFocus = false
+  shouldFocus = false,
+  clues = [],
+  checkForMatch
 }) => {
   const [inputValue, setInputValue] = useState<string>('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -57,6 +62,13 @@ const SentenceBuilder: React.FC<SentenceBuilderProps> = ({
     if (e.key === 'Backspace' && inputValue === '' && selectedWords.length > 0) {
       e.preventDefault();
       onWordRemove(selectedWords.length - 1);
+      
+      // If we have words left after removing, check if they match a clue
+      if (selectedWords.length > 1 && checkForMatch) {
+        // We pass selectedWords.length - 1 because we need to exclude the last word that will be removed
+        const remainingWords = selectedWords.slice(0, -1);
+        checkForMatch(remainingWords);
+      }
       return;
     }
 
@@ -69,15 +81,29 @@ const SentenceBuilder: React.FC<SentenceBuilderProps> = ({
         word => word.toLowerCase() === inputValue.toLowerCase()
       );
       
+      // The word we'll potentially add
+      let wordToAdd: string | null = null;
+      
       if (exactMatch) {
-        onWordClick(exactMatch);
-        setInputValue('');
-        setSelectedSuggestionIndex(-1);
-        return;
+        wordToAdd = exactMatch;
+      } else if (suggestions.length === 1) {
+        wordToAdd = suggestions[0];
       }
       
-      if (suggestions.length === 1) {
-        onWordClick(suggestions[0]);
+      if (wordToAdd) {
+        // Check if adding this word would complete a clue
+        if (selectedWords.length > 0 && checkForMatch) {
+          const testWords = [...selectedWords, wordToAdd];
+          const currentSentence = testWords.join(' ').toLowerCase();
+          
+          // Check against unsolved clues - this is just for logging, the actual check happens in onWordClick
+          clues.some(clue => 
+            !clue.solved && clue.answer.toLowerCase() === currentSentence
+          );
+        }
+        
+        // Add the word normally
+        onWordClick(wordToAdd);
         setInputValue('');
         setSelectedSuggestionIndex(-1);
         return;
@@ -115,13 +141,56 @@ const SentenceBuilder: React.FC<SentenceBuilderProps> = ({
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    const newValue = e.target.value;
+    setInputValue(newValue);
+    
+    // If the input is empty, don't continue
+    if (!newValue.trim()) return;
+    
+    // Check if the input exactly matches an available word
+    const exactMatch = availableWords.find(
+      word => word.toLowerCase() === newValue.toLowerCase()
+    );
+    
+    if (exactMatch && selectedWords.length > 0 && checkForMatch) {
+      // Check if adding this word would complete a clue
+      const testWords = [...selectedWords, exactMatch];
+      const currentSentence = testWords.join(' ').toLowerCase();
+      
+      // Check against unsolved clues
+      const isCompleteAnswer = clues.some(clue => 
+        !clue.solved && clue.answer.toLowerCase() === currentSentence
+      );
+      
+      if (isCompleteAnswer) {
+        // If it's a complete answer, add the word
+        onWordClick(exactMatch);
+        setInputValue('');
+      }
+    }
   };
 
   const handleSuggestionClick = (word: string) => {
-    onWordClick(word);
-    setInputValue('');
-    inputRef.current?.focus();
+    // Check if adding this word would complete a clue
+    if (selectedWords.length > 0 && checkForMatch) {
+      const testWords = [...selectedWords, word];
+      const currentSentence = testWords.join(' ').toLowerCase();
+      
+      // Check against unsolved clues
+      const isCompleteAnswer = clues.some(clue => 
+        !clue.solved && clue.answer.toLowerCase() === currentSentence
+      );
+      
+      // If it's not a complete answer, we still add the word normally
+      onWordClick(word);
+      setInputValue('');
+      inputRef.current?.focus();
+    } else {
+      // If no words selected yet or no checkForMatch function, just add the word
+      onWordClick(word);
+      setInputValue('');
+      inputRef.current?.focus();
+    }
   };
 
   const handleFocus = () => {

@@ -228,5 +228,69 @@
     "extraWords": [
       "bad", "james", "bond", "zelda", "austin", "playstation", "street", "fight", "a", "us", "bar", "3", "dew", "trust", "atari", "mission", "yoshi", "phone" 
     ]
+  },
+  "2025-05-03": {
+    "title": "Lebron James Bond",
+    "clues": [
+      {
+        "id": 0,
+        "question": "The first film in the James Bond series features a song by TLC. (It's still not a medical film).",
+        "answer": "Dr. No Scrubs",
+        "solved": false
+      },
+      {
+        "id": 1,
+        "question": "The second film in the James Bond series is filmed on a land mass in Fiji where sexy singles couple up in a reality show. (it was notably NOT filmed in the country in it's name).",
+        "answer": "From Russia with Love Island",
+        "solved": false
+      },
+      {
+        "id": 2,
+        "question": "A Pierce Brosnan Bond flick is watched during an early November Mexican holiday. (Not the film that actually has a scene at a parade for that holiday).",
+        "answer": "Die Another Day of the Dead",
+        "solved": false
+      },
+      {
+        "id": 3,
+        "question": "The most recent Bond portrayer runs the warehouse of a paper company and doubles as a gay CNN broadcast journalist/political commentator.", 
+        "answer": "Daniel Craig Anderson Cooper",
+        "solved": false
+      }
+    ],
+    "extraWords": [
+      "golden", "eye", "sean", "thomas", "spy", "diamonds", "only", "sky", "casino", "hank", "italy", "korea", "china", "man", "gun"
+    ]
+  },
+  "2025-05-05": {
+    "title": "Fast Food Fight",
+    "clues": [
+      {
+        "id": 0,
+        "question": "A classic American fast food chain is visited by a British folk hero who wields a mythical sword.",
+        "answer": "Burger King Arthur",
+        "solved": false
+      },
+      {
+        "id": 1,
+        "question": "An 'Yum!' fast food chain features a vegetable that primarily comes in green, red, yellow or orange.",
+        "answer": "Taco Bell Pepper",
+        "solved": false
+      },
+      {
+        "id": 2,
+        "question": "A dessert-forward fast food chain is visited by a rapper/singer/actress born Dana Elaine Owens.",
+        "answer": "Dairy Queen Latifah",
+        "solved": false
+      },
+      {
+        "id": 3,
+        "question": "The restaurant famed for its secret blend of 11 herbs and spices inspires a hen to warn that the sky is falling, raining down hot n ready pizzas.",
+        "answer": "Kentucky Fried Chicken Little Caesars",
+        "solved": false
+      }
+    ],
+    "extraWords": [
+      "big", "mac", "crunchwrap", "silvers", "panda", "mcdonalds", "quarter", "cheese", "sauce", "big", "dennys", "dinner", "snack", "with", "a", "the", "boys", "free"
+    ]
   }
 } 

@@ -41,7 +41,7 @@ const IntroModal: React.FC<IntroModalProps> = ({ isOpen, onStart }) => {
                 fontWeight: 'bold', 
                 marginBottom: '1rem' 
               }}>
-                How to Play Bandadle
+                How to Play BandAdle
               </h2>
 
               <div style={{ 

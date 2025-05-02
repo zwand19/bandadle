@@ -10,7 +10,7 @@ import ResultModal from '@/components/ResultModal';
 import IntroModal from '@/components/IntroModal';
 import HeaderMenu from '@/components/HeaderMenu';
 import { getCluesForDate, generateAvailableWords, getGameDateForToday, getTitleForDate } from '@/gameData';
-import { Clue, GameState } from '@/types';
+import { GameState } from '@/types';
 import ReactDOM from 'react-dom/client';
 
 export default function Home() {
@@ -199,6 +199,7 @@ export default function Home() {
     // Get the current selected words and create a new array without the word at the given index
     const updatedWords = gameState.selectedWords.filter((_, i) => i !== index);
     
+    // Update state first with the new words
     setGameState(prev => ({
       ...prev,
       selectedWords: updatedWords
@@ -206,7 +207,8 @@ export default function Home() {
     
     // Check if removing the word now matches any clue
     if (updatedWords.length > 0) {
-      checkForMatch(updatedWords);
+      // Use setTimeout to ensure state is updated before checking matches
+      setTimeout(() => checkForMatch(updatedWords), 0);
     }
   };
   
@@ -550,6 +552,8 @@ export default function Home() {
           availableWords={gameState.availableWords}
           onWordClick={handleWordClick}
           shouldFocus={shouldFocusInput}
+          clues={gameState.clues}
+          checkForMatch={checkForMatch}
         />
         
         <div className="flex-1 overflow-auto">

@@ -6,7 +6,7 @@ import Image from 'next/image'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Bandadle - Daily Before and After Word Game',
+  title: 'BandAdle - Daily Before and After Word Game',
   description: 'A daily game of before and after puzzles. Solve all the clues before time runs out!',
   icons: {
     icon: '/favicon.ico'
@@ -48,7 +48,7 @@ export default function RootLayout({
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Image 
                   src="/logo.png" 
-                  alt="Bandadle Logo" 
+                  alt="BandAdle Logo" 
                   width={40} 
                   height={40} 
                   style={{ 
@@ -64,7 +64,7 @@ export default function RootLayout({
                     margin: '0',
                     color: 'rgb(242, 236, 215) !important'
                   }}>
-                    Bandadle
+                    BandAdle
                   </h1>
                   <p style={{ 
                     fontSize: '0.75rem', 
@@ -101,7 +101,7 @@ export default function RootLayout({
               color: 'rgb(31, 70, 57)', 
               fontSize: '0.75rem' 
             }}>
-              <div>&copy; {new Date().getFullYear()} Bandadle</div>
+              <div>&copy; {new Date().getFullYear()} BandAdle</div>
               <div style={{ marginTop: '0.25rem' }}>
                 Created by Zachary Wand - <a href="mailto:z.wand19@gmail.com" style={{ color: 'rgb(31, 70, 57)', textDecoration: 'none', fontWeight: 'bold' }}>z.wand19@gmail.com</a>
               </div>

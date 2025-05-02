@@ -183,5 +183,5 @@ export const getResultEmojis = (
     }
   }
   
-  return `Bandadle ${displayDate}\n${actualSolved}/4 ${timeEmoji}\nTime: ${formattedTime}\n\n${completionEmojis}\n\nbandadle.com`;
+  return `BandAdle ${displayDate}\n${actualSolved}/4 ${timeEmoji}\nTime: ${formattedTime}\n\n${completionEmojis}\n\nbandadle.com`;
 }; 
