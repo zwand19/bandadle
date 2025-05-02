@@ -196,10 +196,18 @@ export default function Home() {
   };
   
   const handleWordRemove = (index: number) => {
+    // Get the current selected words and create a new array without the word at the given index
+    const updatedWords = gameState.selectedWords.filter((_, i) => i !== index);
+    
     setGameState(prev => ({
       ...prev,
-      selectedWords: prev.selectedWords.filter((_, i) => i !== index)
+      selectedWords: updatedWords
     }));
+    
+    // Check if removing the word now matches any clue
+    if (updatedWords.length > 0) {
+      checkForMatch(updatedWords);
+    }
   };
   
   const handleClearSentence = () => {

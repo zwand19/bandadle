@@ -196,5 +196,37 @@
     "extraWords": [
       "cream", "a", "we", "&", "boys", "space", "joker", "club", "football", "captain", "america", "wanda", "blue", "up", "faking", "company", "friends", "bad", "oops"
     ]
+  },
+  "2025-05-02": {
+    "title": "Video Game of Life",
+    "clues": [
+      {
+        "id": 0,
+        "question": "Nintendo friends play games with a bunch of LA waiters on a 2009 American sitcom.",
+        "answer": "Mario Party Down",
+        "solved": false
+      },
+      {
+        "id": 1,
+        "question": "A Bruce Springsteen song featuring the refrain 'You can't start a fire without a spark' is played over a popular FromSoftware video game series.",
+        "answer": "Dancing in the Dark Souls",
+        "solved": false
+      },
+      {
+        "id": 2,
+        "question": "Mike Myers and Dana Carvey explore Azeroth as orcs.",
+        "answer": "Wayne's World of Warcraft",
+        "solved": false
+      },
+      {
+        "id": 3,
+        "question": "A slang for 'being real' or 'being honest' and eating a candy bar with chocolate, caramel, and crisped rice while stealing cars and shooting people up in an open world video game.", 
+        "answer": "Keeping it 100 Grand Theft Auto",
+        "solved": false
+      }
+    ],
+    "extraWords": [
+      "bad", "james", "bond", "zelda", "austin", "playstation", "street", "fight", "a", "us", "bar", "3", "dew", "trust", "atari", "mission", "yoshi", "phone" 
+    ]
   }
 } 
