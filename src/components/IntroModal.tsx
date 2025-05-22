@@ -57,7 +57,7 @@ const IntroModal: React.FC<IntroModalProps> = ({ isOpen, onStart }) => {
                   <strong>Example:</strong> "The King of Queens joins MI6" → "Kevin James Bond"
                 </p>
                 <p style={{ marginBottom: '0.75rem' }}>
-                  <strong>Before & During & After:</strong> The final clue describes a phrase that combines three things, where the end of the first connects to the beginning of the second, and the end of the second connects to the beginning of the third.
+                  <strong>Before, During & After:</strong> The final clue describes a phrase that combines three things, where the end of the first connects to the beginning of the second, and the end of the second connects to the beginning of the third.
                 </p>
                 <p style={{ marginBottom: '0.75rem' }}>
                   <strong>Solve All Clues:</strong> Build sentences by selecting words from the grid below to match each clue.

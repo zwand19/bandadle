@@ -14,7 +14,7 @@ const clueColors = {
   0: '#3b82f6', // blue
   1: '#22c55e', // green
   2: '#eab308', // yellow
-  3: '#f97316', // orange for the final clue (Before & During & After)
+  3: '#f97316', // orange for the final clue (Before, During & After)
 };
 
 const ClueCard: React.FC<ClueCardProps> = ({ 
@@ -64,7 +64,7 @@ const ClueCard: React.FC<ClueCardProps> = ({
         margin: '0 0 0.25rem 0',
         paddingRight: '2rem' // Make room for hint button
       }}>
-        {clue.id === 3 ? "Before & During & After" : "Before & After"}
+        {clue.id === 3 ? "Before, During & After" : "Before & After"}
       </h3>
       
       {!clue.solved && onHint && (

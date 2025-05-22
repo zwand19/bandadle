@@ -293,7 +293,7 @@
       "big", "mac", "crunchwrap", "silvers", "panda", "mcdonalds", "quarter", "cheese", "sauce", "big", "dennys", "dinner", "snack", "with", "a", "the", "boys", "free"
     ]
   },
-  "2025-05-22": {
+  "2025-05-21": {
     "title": "Party Animal House",
     "clues": [
       {
@@ -304,8 +304,8 @@
       },
       {
         "id": 1,
-        "question": "An ABC police procedural set in Manhattan is binge watched by a certain 100+ ton animal.",
-        "answer": "NYPD Blue Whale",
+        "question": "The tallest dog breed in the world becomes a popular 2000s comedian & actor.",
+        "answer": "Great Dane Cook",
         "solved": false
       },
       {
