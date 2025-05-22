@@ -60,13 +60,10 @@ const IntroModal: React.FC<IntroModalProps> = ({ isOpen, onStart }) => {
                   <strong>Before, During & After:</strong> The final clue describes a phrase that combines three things, where the end of the first connects to the beginning of the second, and the end of the second connects to the beginning of the third.
                 </p>
                 <p style={{ marginBottom: '0.75rem' }}>
-                  <strong>Solve All Clues:</strong> Build sentences by selecting words from the grid below to match each clue.
+                  <strong>Entering Clues:</strong> Click on words to select them or start typing to search for words. Press <strong>Space</strong> or <strong>Tab</strong> to autocomplete a word when it's the only match or matches exactly what you typed.
                 </p>
                 <p style={{ marginBottom: '0.75rem' }}>
                   <strong>Beat the Clock:</strong> Your time is tracked. How quickly can you solve all puzzles?
-                </p>
-                <p style={{ marginBottom: '0.75rem' }}>
-                  <strong>Entering Clues:</strong> Click on words to select them or start typing to search for words. Press <strong>Space</strong> or <strong>Tab</strong> to autocomplete a word when it's the only match or matches exactly what you typed.
                 </p>
                 <p style={{ marginBottom: '0.75rem' }}>
                   <strong>Need Help?</strong> Click the hint button (?) on any clue to highlight answer words in the color of that clue. 3 red herrings will also be highlighted in the same color.
