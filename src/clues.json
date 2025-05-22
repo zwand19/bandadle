@@ -292,5 +292,37 @@
     "extraWords": [
       "big", "mac", "crunchwrap", "silvers", "panda", "mcdonalds", "quarter", "cheese", "sauce", "big", "dennys", "dinner", "snack", "with", "a", "the", "boys", "free"
     ]
+  },
+  "2025-05-06": {
+    "title": "Party Animal House",
+    "clues": [
+      {
+        "id": 0,
+        "question": "A fictional minimum-security women's prison in Connecticut houses an Ursus americanus.",
+        "answer": "Orange is the New Black Bear",
+        "solved": false
+      },
+      {
+        "id": 1,
+        "question": "An ABC police procedural set in Manhattan is binge watched by a certain 100+ ton animal.",
+        "answer": "NYPD Blue Whale",
+        "solved": false
+      },
+      {
+        "id": 2,
+        "question": "The only venemous lizard native to the United States goes off to college with Sully in a 2013 Pixar sequel to a 2001 film.",
+        "answer": "Gila Monsters University",
+        "solved": false
+      },
+      {
+        "id": 3,
+        "question": "A bird that is the namesake of a Canadian baseball team hangs out with actors Jason Mewes and Kevin Smith in their 2001 raunchy road trip stoner film where they blast an AC/DC classic.",
+        "answer": "Blue Jay and Silent Bob Strike Back in Black",
+        "solved": false
+      }
+    ],
+    "extraWords": [
+      "finding", "toy", "polar", "keanu", "cops", "new", "york", "yellow", "spotted", "southern", "inside", "out", "chicken", "dude", "car", "road", "trip", "michael", "of", "with"
+    ]
   }
 } 
