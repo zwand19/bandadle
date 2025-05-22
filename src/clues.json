@@ -298,8 +298,8 @@
     "clues": [
       {
         "id": 0,
-        "question": "A fictional minimum-security women's prison in Connecticut houses an Ursus americanus.",
-        "answer": "Orange is the New Black Bear",
+        "question": "A 2001 pyschological suspense thriller staring Morgan Freeman where he holds a long-limbed primate found in South and Central America.",
+        "answer": "Along Came a Spider Monkey",
         "solved": false
       },
       {
@@ -310,7 +310,7 @@
       },
       {
         "id": 2,
-        "question": "The only venemous lizard native to the United States goes off to college with Sully in a 2013 Pixar sequel to a 2001 film.",
+        "question": "The only venomous lizard native to the United States goes off to college with Sully in a 2013 Pixar sequel to a 2001 film.",
         "answer": "Gila Monsters University",
         "solved": false
       },
@@ -322,7 +322,7 @@
       }
     ],
     "extraWords": [
-      "finding", "toy", "polar", "keanu", "cops", "new", "york", "yellow", "spotted", "southern", "inside", "out", "chicken", "dude", "car", "road", "trip", "michael", "of", "with"
+      "finding", "toy", "polar", "keanu", "cops", "new", "york", "yellow", "inside", "out", "chicken", "dude", "car", "road", "trip", "michael"
     ]
   }
 } 
